@@ -22,12 +22,7 @@ Route::get('/admin', function()
 	return View::make('admin.index');
 });
 
-Route::get('/alumnos', function()
-{
-	return View::make('admin.alumnos.index');
-});
-
-Route::get('/cursos', function()
-{
-	return View::make('admin.cursos.index');
-});
+Route::resource('alumnos', 'AlumnosController');
+Route::resource('cursos', 'CursosController');
+Route::resource('profesores', 'ProfesoresController');
+Route::resource('informe-logros', 'InformeLogrosController');

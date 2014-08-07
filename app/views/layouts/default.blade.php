@@ -13,13 +13,12 @@
 
     <script src="{{ Cache::url('/assets/scripts/modernizr.js', true) }}"></script>
     <script src="{{ Cache::url('/assets/scripts/detectizr.js', true) }}"></script>
+    <script src="{{ Cache::url('/assets/scripts/jquery.js', true) }}"></script>
   </head>
   <body>
     @include('../partials/nav')
 
     @yield('content')
-
-    <script src="{{ Cache::url('/assets/scripts/jquery.js', true) }}"></script>
 
     @if ( getenv('APP_ENV') )
       <script src="{{ Cache::url('/assets/scripts/scripts.js', true) }}"></script>

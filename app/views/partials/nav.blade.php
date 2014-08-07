@@ -9,7 +9,7 @@
 				<li><a href="{{ URL::to('cursos') }}">Cursos</a></li>
 				<li><a href="{{ URL::to('profesores') }}">Profesores</a></li>
 				<li><a href="{{ URL::to('asignaturas') }}">Asignaturas</a></li>
-				<li><a href="{{ URL::to('informes') }}">Informes</a></li>
+				<li><a href="{{ URL::to('informe-logros') }}">Informes</a></li>
 				<li><a href="{{ URL::to('salir') }}">Salir</a></li>
 			</ul>
 		</nav>

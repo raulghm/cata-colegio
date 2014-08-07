@@ -12,7 +12,7 @@
 	<main>
 		<div class="inner">
 
-			<h2>Alumnos</h2>
+			<h2>Profesores</h2>
 
 			<table id="tabla" class="display" cellspacing="0" width="100%">
 				<thead>
@@ -29,9 +29,9 @@
 
 		    <tbody>
 
-		    	@foreach ($alumnos as $alumno)
+		    	@foreach ($profesores as $profesor)
 		    		<tr>
-			    		<td>{{ $alumno->nombre }}</td>
+			    		<td>{{ $profesor->nombre }}</td>
 			    	</tr>
 					@endforeach
 
