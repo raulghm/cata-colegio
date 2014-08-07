@@ -1,0 +1,24 @@
+.d-table {
+	display: table;
+	width: 100%;
+
+	.d-table-cell {
+		display: table-cell;
+		vertical-align: middle;
+	}
+}
+
+.cf {
+	@extend .clearfix;
+}
+
+.d-table {
+	height: inherit;
+	width: 100%;
+	display: table;
+
+	.d-table-cell {
+		height: inherit;
+		vertical-align: middle;
+	}
+}
