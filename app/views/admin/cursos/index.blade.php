@@ -13,6 +13,7 @@
 		<div class="inner">
 
 			<h2>Cursos</h2>
+			<hr>
 
 			<table id="tabla" class="display" cellspacing="0" width="100%">
 				<thead>

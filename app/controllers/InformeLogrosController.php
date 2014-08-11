@@ -2,102 +2,131 @@
 
 class InformeLogrosController extends \BaseController {
 
-    /**
-     * Display a listing of informeLogros
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        $alumnos = alumno::all();
-        $cursos = curso::all();
+	/**
+	 * Display a listing of informeLogros
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$cursos = curso::all();
 
-        return View::make('admin.informes.logros.index', compact('alumnos', 'cursos'));
-    }
+		return View::make('admin.informes.logros.index', compact('cursos'));
+	}
 
-    /**
-     * Show the form for creating a new post
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return View::make('informeLogros.create');
-    }
+	// public function curso()
+	// {
+	// 	$alumnos = alumno::all();
+	// 	$cursos = curso::all();
+	// 	$asignaturas = asignatura::all();
 
-    /**
-     * Store a newly created post in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        $data = Input::all();
+	// 	return View::make('admin.informes.logros.curso', compact('alumnos', 'cursos', 'asignaturas'));
+	// }
 
-        InformeLogro::create($data);
+	/**
+	 * Show the form for creating a new post
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return View::make('informeLogros.create');
+	}
 
-        return Redirect::route('informeLogros.index');
-    }
+	/**
+	 * Store a newly created post in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		// $data = Input::all();
 
-    /**
-     * Display the specified post.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $post = Alumno::findOrFail($id);
+		// if ($query->num_rows() == 0)
+		// {
+		//   // Si no existe, insertar
+		//   $this->db->insert('informe_ob_trans', $data);
+		// }
+		// else
+		// {
+		//   // Si existe, actualizar
+		//   $this->db->where('id', $_POST['id'][$i]);
+		//   $this->db->update('informe_ob_trans', $data);
+		// }
 
-        return View::make('informeLogros.show', compact('post'));
-    }
+		$max = count($_POST['id_alumno']);
 
-    /**
-     * Show the form for editing the specified post.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $post = Alumno::find($id);
+		echo $max;
 
-        return View::make('informeLogros.edit', compact('post'));
-    }
+		// for ($i = 0; $i < $max; $i++)
+		// {
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        $post = Alumno::findOrFail($id);
+		// }
 
-        $validator = Validator::make($data = Input::all(), Alumno::$rules);
+		// InformeLogro::create($data);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
+		// return Redirect::route('informeLogros.index');
+	}
 
-        $post->update($data);
+	/**
+	 * Display the specified post.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$post = Alumno::findOrFail($id);
 
-        return Redirect::route('informeLogros.index');
-    }
+		return View::make('informeLogros.show', compact('post'));
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        Alumno::destroy($id);
+	/**
+	 * Show the form for editing the specified post.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		$post = Alumno::find($id);
 
-        return Redirect::route('informeLogros.index');
-    }
+		return View::make('informeLogros.edit', compact('post'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$post = Alumno::findOrFail($id);
+
+		$validator = Validator::make($data = Input::all(), Alumno::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$post->update($data);
+
+		return Redirect::route('informeLogros.index');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		Alumno::destroy($id);
+
+		return Redirect::route('informeLogros.index');
+	}
 
 }

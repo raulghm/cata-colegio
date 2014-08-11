@@ -2,7 +2,7 @@
 	<div class="inner">
 
 		<nav class="navbar navbar-inverse">
-			<a class="navbar-brand" href="{{ URL::to('/') }}">Laravel App</a>
+			<a class="navbar-brand" href="{{ URL::to('/') }}">Cata App</a>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="{{ URL::to('/') }}">Home</a></li>
 				<li><a href="{{ URL::to('alumnos') }}">Alumnos</a></li>
