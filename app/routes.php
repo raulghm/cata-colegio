@@ -50,20 +50,24 @@ Route::get('informe-logros/curso/{curso}/{semestre?}', function($curso = null, $
 		}
 	}
 
+	if ( !(isset($array_values)) ) {
+		$array_values = array();
+	}
+
 	// var_dump($array_values);
-	return Arrays::size($array_values);
+	// // return Arrays::size($array_values);
+	// var_dump(Arrays::pluck($array_values, 1));
 
 	// $cursos = Curso::all();
 	$asignaturas = Asignatura::all();
 
 	// dd($alumnos);
 
-	return View::make('admin.informes.logros.curso')
+	return View::make('admin.informes.logros.curso', array('array_values' => $array_values))
 		->with('cursos', $cursos)
 		->with('alumnos', $alumnos)
 		->with('informe_logros', $informe_logros)
 		->with('asignaturas', $asignaturas);
-		// ->with('array_values', $array_values);
 });
 
 Route::post('informe-logros/store', function()
@@ -76,13 +80,13 @@ Route::post('informe-logros/store', function()
 		$post = new InformeLogro;
 
 		$id_alumno = Input::get('id_alumno')[$i];
-		$values = Input::get('value')[$id_alumno];
+		$value = Input::get('value')[$id_alumno];
 		$id_asignatura = Input::get('id_asignatura')[$id_alumno];
 		$array_combinado = array();
 
 		for ($j = 0; $j < count($id_asignatura); $j++)
 		{
-			$array_combinado[$id_asignatura[$j]] = $values[$j];
+			$array_combinado[$id_asignatura[$j]] = $value[$j];
 		}
 
 		// guardo valores id_asignatura + valor_asignatura
@@ -94,6 +98,8 @@ Route::post('informe-logros/store', function()
 		$post->id_semestre = Input::get('id_semestre');
 
 		$post->save();
+
+		unset($array_combinado);
 	}
 
 

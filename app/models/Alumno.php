@@ -9,4 +9,8 @@ class Alumno extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'alumnos';
+
+	public function informe_logros() {
+		return $this->hasMany('InformeLogro');
+	}
 }
