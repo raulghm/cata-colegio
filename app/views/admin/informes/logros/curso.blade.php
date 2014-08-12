@@ -59,10 +59,12 @@
 
 			    <tbody>
 
-			    	@foreach ($alumnos as $alumno)
+			    	@foreach ($alumnos as $key => $alumno)
+			    		<?php $array_values[$key] ?>
+			    		<input type="hidden" name="id[]" value="{{ $alumno->id }}">
 			    		<input type="hidden" name="id_alumno[]" value="{{ $alumno->id }}">
 			    		<tr>
-				    		<td>{{ $alumno->nombre }}</td>
+				    		<td>{{ $alumno->id }}</td>
 				    		@foreach ($asignaturas as $asignatura)
 				    			<input type="hidden" name="id_asignatura[{{ $alumno->id }}][]" value="{{ $asignatura->id }}">
 				    			<td><input type="text" name="value[{{ $alumno->id }}][]"></td>

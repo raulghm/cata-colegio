@@ -29,20 +29,41 @@ Route::resource('profesores', 'ProfesoresController');
 Route::resource('informe-logros', 'InformeLogrosController');
 
 // informe logros
-Route::get('informe-logros/curso/{curso}/{semestre?}', function($curso = null, $semestre = null)
+Route::get('informe-logros/curso/{curso}/{semestre?}', function($curso = null, $semestre = 1)
 {
-	if ($curso)
+	if ($semestre)
 		$alumnos = Alumno::where('id_curso', '=', $curso)->get();
 	else
 		$alumnos = Alumno::all();
 
+	$cursos = Curso::lists('nombre', 'id');
+
+	if ($semestre)
+	{
+		$informe_logros = InformeLogro::where('id_curso', '=', $curso)->where('id_semestre', '=', $semestre)->get();
+		// recuperar valores de notas serializados
+		foreach ($informe_logros as $value) {
+			$values = unserialize($value->values);
+			if (is_array($values)) {
+				$array_values[] = $values;
+			}
+		}
+	}
+
+	// var_dump($array_values);
+	return Arrays::size($array_values);
+
 	// $cursos = Curso::all();
 	$asignaturas = Asignatura::all();
 
+	// dd($alumnos);
+
 	return View::make('admin.informes.logros.curso')
+		->with('cursos', $cursos)
 		->with('alumnos', $alumnos)
-		->with('cursos', Curso::lists('nombre', 'id'))
+		->with('informe_logros', $informe_logros)
 		->with('asignaturas', $asignaturas);
+		// ->with('array_values', $array_values);
 });
 
 Route::post('informe-logros/store', function()
@@ -59,15 +80,13 @@ Route::post('informe-logros/store', function()
 		$id_asignatura = Input::get('id_asignatura')[$id_alumno];
 		$array_combinado = array();
 
-		for ($foo = 0; $foo < count($id_asignatura); $foo++)
+		for ($j = 0; $j < count($id_asignatura); $j++)
 		{
-			$array_combinado[$id_asignatura[$foo]] = $values[$foo];
+			$array_combinado[$id_asignatura[$j]] = $values[$j];
 		}
 
-		// combine asignatura array key + value
-		// $array_values = array_combine($id_asignatura, $values);
+		// guardo valores id_asignatura + valor_asignatura
 		$array_combinado = serialize($array_combinado);
-		// dd($array_combinado);
 
 		$post->id_alumno = $id_alumno;
 		$post->values = $array_combinado;

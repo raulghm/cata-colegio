@@ -15,10 +15,14 @@ class CreateInformeLogrosTable extends Migration {
 		Schema::create('informe_logros', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('id_alumno');
-			$table->integer('id_curso');
-			$table->integer('id_asignatura');
-			$table->string('valor');
+			$table->integer('id_semestre');
+			$table->integer('id_alumno')->unsigned();
+			$table->foreign('id_alumno')->references('id')->on('alumnos');
+			$table->integer('id_curso')->unsigned();
+			$table->foreign('id_curso')->references('id')->on('cursos');
+			$table->integer('id_asignatura')->unsigned();
+			$table->foreign('id_asignatura')->references('id')->on('asignaturas');
+			$table->text('values');
 			$table->timestamps();
 		});
 	}
