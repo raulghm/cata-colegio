@@ -62,15 +62,23 @@
 			    	@foreach ($alumnos as $key => $alumno)
 			    		<input type="hidden" name="id[]" value="{{ $alumno->id }}">
 			    		<input type="hidden" name="id_alumno[]" value="{{ $alumno->id }}">
+							@if ($informe_logros)
+			    			<input type="hidden" name="id_informe[]" value="{{ $informe_logros[$key]['id'] }}">
+							@endif
+
+			    		<?php
+			    		if ( count($array_values) > 0 )
+			    		{
+			    			$array = $array_values[$key];
+			    		}
+					    ?>
 			    		<tr>
 				    		<td>{{ $alumno->id }}</td>
-				    		@foreach ($asignaturas as $key => $asignatura)
+				    		@foreach ($asignaturas as $asignatura)
 				    			<?php
-				    			if ( count($array_values) > 1 )
+				    			if ( isset($array) )
 					    		{
-					    			$array = $array_values[$key];
 					    			$value = $array[$asignatura->id];
-					    			var_dump($value);
 					    		}
 				    			?>
 				    			<input type="hidden" name="id_asignatura[{{ $alumno->id }}][]" value="{{ $asignatura->id }}">

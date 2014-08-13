@@ -50,6 +50,10 @@ Route::get('informe-logros/curso/{curso}/{semestre?}', function($curso = null, $
 		}
 	}
 
+	// if ( !(isset($informe_logros)) ) {
+	// 	$informe_logros = "";
+	// }
+
 	if ( !(isset($array_values)) ) {
 		$array_values = array();
 	}
@@ -66,7 +70,7 @@ Route::get('informe-logros/curso/{curso}/{semestre?}', function($curso = null, $
 	return View::make('admin.informes.logros.curso', array('array_values' => $array_values))
 		->with('cursos', $cursos)
 		->with('alumnos', $alumnos)
-		->with('informe_logros', $informe_logros)
+		->with('informe_logros', $informe_logros->toArray())
 		->with('asignaturas', $asignaturas);
 });
 
@@ -77,29 +81,59 @@ Route::post('informe-logros/store', function()
 
 	for ($i = 0; $i < $max; $i++)
 	{
-		$post = new InformeLogro;
+		$informe_id = Input::get('id_informe')[$i];
+		$query = InformeLogro::find($informe_id);
 
-		$id_alumno = Input::get('id_alumno')[$i];
-		$value = Input::get('value')[$id_alumno];
-		$id_asignatura = Input::get('id_asignatura')[$id_alumno];
-		$array_combinado = array();
-
-		for ($j = 0; $j < count($id_asignatura); $j++)
+		if ( $query )
 		{
-			$array_combinado[$id_asignatura[$j]] = $value[$j];
+			$id_alumno = Input::get('id_alumno')[$i];
+			$value = Input::get('value')[$id_alumno];
+			$id_asignatura = Input::get('id_asignatura')[$id_alumno];
+			unset($array_combinado);
+			$array_combinado = array();
+
+			for ($j = 0; $j < count($id_asignatura); $j++)
+			{
+				$array_combinado[$id_asignatura[$j]] = $value[$j];
+			}
+
+			// guardo valores id_asignatura + valor_asignatura
+			$array_combinado = serialize($array_combinado);
+
+			$query->id_alumno = $id_alumno;
+			$query->values = $array_combinado;
+			$query->id_curso = Input::get('id_curso');
+			$query->id_semestre = Input::get('id_semestre');
+
+			$query->save();
+		}
+		else
+		{
+			$query = new InformeLogro;
+
+			$id_alumno = Input::get('id_alumno')[$i];
+			$value = Input::get('value')[$id_alumno];
+			$id_asignatura = Input::get('id_asignatura')[$id_alumno];
+			unset($array_combinado);
+			$array_combinado = array();
+
+			for ($j = 0; $j < count($id_asignatura); $j++)
+			{
+				$array_combinado[$id_asignatura[$j]] = $value[$j];
+			}
+
+			// guardo valores id_asignatura + valor_asignatura
+			$array_combinado = serialize($array_combinado);
+
+			$query->id_alumno = $id_alumno;
+			$query->values = $array_combinado;
+			$query->id_curso = Input::get('id_curso');
+			$query->id_semestre = Input::get('id_semestre');
+
+			$query->save();
 		}
 
-		// guardo valores id_asignatura + valor_asignatura
-		$array_combinado = serialize($array_combinado);
 
-		$post->id_alumno = $id_alumno;
-		$post->values = $array_combinado;
-		$post->id_curso = Input::get('id_curso');
-		$post->id_semestre = Input::get('id_semestre');
-
-		$post->save();
-
-		unset($array_combinado);
 	}
 
 
