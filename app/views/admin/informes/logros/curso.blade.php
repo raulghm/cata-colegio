@@ -16,7 +16,7 @@
 	<main>
 		<div class="inner">
 
-			<h2>Informe de logros</h2>
+			<!-- <h2>Informe de logros</h2> -->
 			<hr>
 
 			<!-- select curso -->
@@ -60,14 +60,21 @@
 			    <tbody>
 
 			    	@foreach ($alumnos as $key => $alumno)
-			    		<?php $array_values[$key] ?>
 			    		<input type="hidden" name="id[]" value="{{ $alumno->id }}">
 			    		<input type="hidden" name="id_alumno[]" value="{{ $alumno->id }}">
 			    		<tr>
 				    		<td>{{ $alumno->id }}</td>
-				    		@foreach ($asignaturas as $asignatura)
+				    		@foreach ($asignaturas as $key => $asignatura)
+				    			<?php
+				    			if ( count($array_values) > 1 )
+					    		{
+					    			$array = $array_values[$key];
+					    			$value = $array[$asignatura->id];
+					    			var_dump($value);
+					    		}
+				    			?>
 				    			<input type="hidden" name="id_asignatura[{{ $alumno->id }}][]" value="{{ $asignatura->id }}">
-				    			<td><input type="text" name="value[{{ $alumno->id }}][]"></td>
+				    			<td><input type="text" name="value[{{ $alumno->id }}][]" value="<?php echo isset($value) ? $value : "" ?>"></td>
 				    		@endforeach
 				    	</tr>
 						@endforeach
