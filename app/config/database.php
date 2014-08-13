@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'forge',
+			'database'  => 'cata_colegio',
 			'username'  => 'forge',
-			'password'  => '',
+			'password'  => '88bp2W4Y1nnmYf4mKGm6',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
