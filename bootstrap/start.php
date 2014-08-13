@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead', 'Raul.local', 'MacBook-Pro-de-Raul-2.local'),
+	'local' => array('homestead', 'Raul.local', 'MacBook-Pro-de-Raul-2.local', 'mbp-de-raul-2.iptv.microsoft.com'),
 
 ));
 
