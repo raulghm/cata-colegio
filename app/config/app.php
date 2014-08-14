@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Themonkeys\Cachebuster\CachebusterServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
 
 	),
 
@@ -192,6 +193,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Cache'             => 'Themonkeys\Cachebuster\Cachebuster',
 		'Arrays'            => 'Underscore\Types\Arrays',
+		'PDF'               => 'Barryvdh\DomPDF\Facade',
 
 	),
 

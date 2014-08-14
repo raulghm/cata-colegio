@@ -135,7 +135,16 @@ Route::post('informe-logros/store', function()
 
 
 	}
-
-
-
 });
+
+Route::get('test', function()
+{
+	// $data = array();
+	// $pdf = PDF::loadView('admin.informes.logros.pdf-alumno', $data);
+	// return $pdf->download('test.pdf');
+
+	View::make()
+});
+
+
+
