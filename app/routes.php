@@ -140,11 +140,38 @@ Route::post('informe-logros/store', function()
 Route::get('test', function()
 {
 	// $data = array();
-	// $pdf = PDF::loadView('admin.informes.logros.pdf-alumno', $data);
+
+	// function asignatura_data($array, $search, $campo)
+	// {
+	// 	foreach ($array as $value) {
+	// 		if (array_search($search, $value))
+	// 		{
+	// 			return $value[$campo];
+	// 		}
+	// 	}
+	// }
+
+	$data['alumnos'] = Alumno::all();
+	$data['asignaturas'] = Asignatura::all();
+
+	// echo asignatura_data($asignaturas->toArray(), 2, 'nombre');
+
+	// var_dump($informe_logros);
+	// foreach ($informe_logros as $value) {
+	// 	var_dump($value->id_alumno);
+	// }
+
+	// $pdf = PDF::loadView('admin.informes.logros.pdf-alumno'. $data);
+	// $pdf->loadHTML($view);
 	// return $pdf->download('test.pdf');
 
-	View::make()
+	ini_set("memory_limit","128M");
+
+	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
+	$pdf = App::make('dompdf');
+	$pdf->loadHTML($view);
+	return $pdf->download('file.pdf');
+
+	// return View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
 });
-
-
 

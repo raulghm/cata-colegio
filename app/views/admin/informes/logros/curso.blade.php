@@ -16,7 +16,7 @@
 	<main>
 		<div class="inner">
 
-			<!-- <h2>Informe de logros</h2> -->
+			<h2>Informe de logros</h2>
 			<hr>
 
 			<!-- select curso -->
@@ -73,7 +73,7 @@
 			    		}
 					    ?>
 			    		<tr>
-				    		<td>{{ $alumno->id }}</td>
+				    		<td>{{ $alumno->nombre }}</td>
 				    		@foreach ($asignaturas as $asignatura)
 				    			<?php
 				    			if ( isset($array) )
