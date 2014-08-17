@@ -9,7 +9,7 @@
 		"fzaninotto/faker": "*",
 		"themonkeys/cachebuster": "*",
 		"anahkiasen/underscore-php" : "dev-master",
-		"barryvdh/laravel-dompdf": "dev-master"
+		"barryvdh/laravel-dompdf": "*"
 	},
 	"autoload": {
 		"classmap": [

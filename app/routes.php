@@ -165,7 +165,7 @@ Route::get('test', function()
 	// $pdf->loadHTML($view);
 	// return $pdf->download('test.pdf');
 
-	ini_set("memory_limit","128M");
+	ini_set("memory_limit","750M");
 
 	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
 	$pdf = App::make('dompdf');
