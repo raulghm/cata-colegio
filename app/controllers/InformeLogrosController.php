@@ -9,7 +9,7 @@ class InformeLogrosController extends \BaseController {
 	 */
 	public function index()
 	{
-		$cursos = curso::all();
+		$cursos = Curso::all();
 
 		return View::make('admin.informes.logros.index', compact('cursos'));
 	}
