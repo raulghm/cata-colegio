@@ -8758,20 +8758,16 @@ div.DTTT_collection button.DTTT_button, div.DTTT_collection div.DTTT_button, div
   font-size: 14px;
   line-height: 20px; }
 
-/* line 1, /Users/raulghm/Documents/devel/test/cata-colegio/_gulp/src/styles/layout/scaffolding */
-body {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision; }
-
-/* line 6, /Users/raulghm/Documents/devel/test/cata-colegio/_gulp/src/styles/layout/scaffolding */
-main {
+/* line 4, /Users/raulghm/Documents/devel/test/cata-colegio/_gulp/src/styles/layout/scaffolding */
+main .inner {
   max-width: 1200px;
   margin: 0 auto; }
-  /* line 10, /Users/raulghm/Documents/devel/test/cata-colegio/_gulp/src/styles/layout/scaffolding */
-  main .inner {
-    padding: 20px; }
 
 /* line 2, /Users/raulghm/Documents/devel/test/cata-colegio/_gulp/src/styles/partials/header */
 header nav.navbar {
   -webkit-border-radius: 0;
           border-radius: 0; }
+
+/* line 3, /Users/raulghm/Documents/devel/test/cata-colegio/_gulp/src/styles/pages/index */
+main.informe table .input-value {
+  width: 50%; }

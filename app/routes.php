@@ -44,6 +44,7 @@ Route::get('informe-logros/curso/{curso}/{semestre?}', function($curso = null, $
 		// recuperar valores de notas serializados
 		foreach ($informe_logros as $value) {
 			$values = unserialize($value->values);
+
 			if (is_array($values)) {
 				$array_values[] = $values;
 			}
@@ -89,13 +90,15 @@ Route::post('informe-logros/store', function()
 			$id_alumno = Input::get('id_alumno')[$i];
 			$value = Input::get('value')[$id_alumno];
 			$id_asignatura = Input::get('id_asignatura')[$id_alumno];
-			unset($array_combinado);
+			// unset($array_combinado);
 			$array_combinado = array();
 
 			for ($j = 0; $j < count($id_asignatura); $j++)
 			{
 				$array_combinado[$id_asignatura[$j]] = $value[$j];
 			}
+
+			var_dump($array_combinado);
 
 			// guardo valores id_asignatura + valor_asignatura
 			$array_combinado = serialize($array_combinado);
@@ -114,13 +117,15 @@ Route::post('informe-logros/store', function()
 			$id_alumno = Input::get('id_alumno')[$i];
 			$value = Input::get('value')[$id_alumno];
 			$id_asignatura = Input::get('id_asignatura')[$id_alumno];
-			unset($array_combinado);
+			// unset($array_combinado);
 			$array_combinado = array();
 
 			for ($j = 0; $j < count($id_asignatura); $j++)
 			{
 				$array_combinado[$id_asignatura[$j]] = $value[$j];
 			}
+
+			var_dump($array_combinado);
 
 			// guardo valores id_asignatura + valor_asignatura
 			$array_combinado = serialize($array_combinado);
@@ -138,7 +143,11 @@ Route::post('informe-logros/store', function()
 });
 
 Route::get('test', function(){
-	return PDF::loadHTML('<strong>Hello World</strong>')->lowquality()->pageSize('A2')->download();
+	// https://github.com/knplabs/snappy
+	$data['alumnos'] = Alumno::all();
+	$data['asignaturas'] = Asignatura::all();
+	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
+	return PDF::loadHTML($view)->lowquality()->pageSize('A2')->download();
 });
 
 Route::get('pdf', function()
@@ -169,7 +178,7 @@ Route::get('pdf', function()
 	// $pdf->loadHTML($view);
 	// return $pdf->download('test.pdf');
 
-	ini_set("memory_limit","750M");
+	// ini_set("memory_limit","750M");
 
 	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
 	$pdf = App::make('dompdf');

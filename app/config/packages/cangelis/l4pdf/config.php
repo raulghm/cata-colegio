@@ -1,4 +1,4 @@
 <?php
 return array(
-	'executable' => '/usr/bin/wkhtmltopdf'
+	'executable' => '/usr/local/bin/wkhtmltopdf'
 );
