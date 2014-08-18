@@ -17,6 +17,10 @@
 		<div class="inner">
 
 			<h2>Informe de logros</h2>
+
+			<div class="actions">
+				<a href="{{ URL::to('pdf') }}" class="btn btn-primary">Generar PDF</a>
+			</div>
 			<hr>
 
 			<!-- select curso -->

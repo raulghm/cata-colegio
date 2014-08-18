@@ -124,6 +124,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Themonkeys\Cachebuster\CachebusterServiceProvider',
 		'Barryvdh\DomPDF\ServiceProvider',
+		'CanGelis\L4pdf\ServiceProvider'
 
 	),
 
@@ -193,7 +194,8 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Cache'             => 'Themonkeys\Cachebuster\Cachebuster',
 		'Arrays'            => 'Underscore\Types\Arrays',
-		'PDF'               => 'Barryvdh\DomPDF\Facade',
+		// 'PDF'               => 'Barryvdh\DomPDF\Facade',
+		'PDF' => 'CanGelis\L4pdf\PDFFacade'
 
 	),
 

@@ -137,7 +137,11 @@ Route::post('informe-logros/store', function()
 	}
 });
 
-Route::get('test', function()
+Route::get('test', function(){
+	return PDF::loadHTML('<strong>Hello World</strong>')->lowquality()->pageSize('A2')->download();
+});
+
+Route::get('pdf', function()
 {
 	// $data = array();
 
@@ -170,7 +174,7 @@ Route::get('test', function()
 	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
 	$pdf = App::make('dompdf');
 	$pdf->loadHTML($view);
-	return $pdf->download('file.pdf');
+	return $pdf->download('informe.pdf');
 
 	// return View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
 });
