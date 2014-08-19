@@ -19,7 +19,9 @@
 			<h2>Informe de logros</h2>
 
 			<div class="actions">
-				<a href="{{ URL::to('pdf') }}" class="btn btn-primary">Generar PDF</a>
+				<?php	if ( Request::segment(3) && Request::segment(4) ):	?>
+					<a href="{{ URL::to('test') }}/{{ Request::segment(3) }}/{{ Request::segment(4) }}" class="btn btn-primary">Generar PDF</a>
+				<?php endif; ?>
 			</div>
 			<hr>
 

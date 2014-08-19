@@ -142,12 +142,22 @@ Route::post('informe-logros/store', function()
 	}
 });
 
-Route::get('test', function(){
+Route::get('test/{curso}/{semestre}', function($curso = null, $semestre = null)
+{
 	// https://github.com/knplabs/snappy
-	$data['alumnos'] = Alumno::all();
+	$data['alumnos'] = Alumno::where('id_curso', '=', $curso)->get();
 	$data['asignaturas'] = Asignatura::all();
+
 	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
-	return PDF::loadHTML($view)->lowquality()->pageSize('A2')->download();
+
+
+	// https://github.com/cangelis/l4pdf/blob/master/DOCUMENTATION.md
+	return PDF::loadHTML($view)
+	 				// ->lowquality()
+	 				->pageSize('Legal') // Legal, Letter, A4, A3, etc
+	 				->orientation('Landscape') // Portrait, Landscape
+	 				->enableForms()
+	 				->stream();
 });
 
 Route::get('pdf', function()
