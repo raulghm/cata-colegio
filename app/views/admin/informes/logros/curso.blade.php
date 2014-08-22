@@ -10,6 +10,11 @@
 		$('.select-semestres').change(function(){
 			open('{{ URL::to('informe-logros/curso') }}/{{ Request::segment(3) }}/' + $('.select-semestres').val(), '_self')
 		});
+
+		$('.btn-save').click(function(){
+			$('.form').submit();
+		});
+
 	});
 	</script>
 
@@ -19,8 +24,16 @@
 			<h2>Informe de logros</h2>
 
 			<div class="actions">
+				<button class="btn btn-info btn-save">Guardar</button>
+
 				<?php	if ( Request::segment(3) && Request::segment(4) ):	?>
-					<a href="{{ URL::to('test') }}/{{ Request::segment(3) }}/{{ Request::segment(4) }}" class="btn btn-primary">Generar PDF</a>
+					{{ Form::open(array( 'url' => 'test', 'class' => '', 'style' => 'display: inline-block; margin-left: 5px;' )) }}
+						<input type="hidden" name="id_curso" value="{{ Request::segment(3) }}">
+						<input type="hidden" name="id_semestre" value="{{ Request::segment(4) }}">
+						<input type="submit" class="btn btn-primary" value="Generar PDF">
+						<input type="text" name="date" placeholder="Fecha del informe">
+
+					{{ Form::close() }}
 				<?php endif; ?>
 			</div>
 			<hr>
@@ -99,7 +112,7 @@
 			    </tbody>
 				</table>
 
-				<input type="submit" value="Guardar">
+				<input type="submit" value="Guardar" class="hide">
 
 			{{ Form::close() }}
 

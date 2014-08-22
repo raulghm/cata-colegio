@@ -98,7 +98,7 @@ Route::post('informe-logros/store', function()
 				$array_combinado[$id_asignatura[$j]] = $value[$j];
 			}
 
-			var_dump($array_combinado);
+			// var_dump($array_combinado);
 
 			// guardo valores id_asignatura + valor_asignatura
 			$array_combinado = serialize($array_combinado);
@@ -138,15 +138,17 @@ Route::post('informe-logros/store', function()
 			$query->save();
 		}
 
+		return Redirect::back();
 
 	}
 });
 
-Route::get('test/{curso}/{semestre}', function($curso = null, $semestre = null)
+Route::post('test', function()
 {
 	// https://github.com/knplabs/snappy
-	$data['alumnos'] = Alumno::where('id_curso', '=', $curso)->get();
+	$data['alumnos'] = Alumno::where('id_curso', '=', Input::get('id_curso'))->get();
 	$data['asignaturas'] = Asignatura::all();
+	$data['date'] = Input::get('date');
 
 	$view = View::make('admin.informes.logros.pdf-alumno')->with('data', $data);
 

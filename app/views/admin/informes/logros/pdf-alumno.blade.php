@@ -118,7 +118,7 @@
 					<td>Nombre</td>
 					<td style="border-bottom: 1px solid;">{{ $alumno->nombre }}</td>
 					<td>Fecha</td>
-					<td style="border-bottom: 1px solid;">1 Agosto 2014</td>
+					<td style="border-bottom: 1px solid;">{{ $data['date'] }}</td>
 				</tr>
 
 				<tr class="content">
