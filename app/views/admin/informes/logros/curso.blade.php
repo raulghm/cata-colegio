@@ -13,13 +13,15 @@
 	});
 	</script>
 
-	<main>
+	<main class="informe">
 		<div class="inner">
 
 			<h2>Informe de logros</h2>
 
 			<div class="actions">
-				<a href="{{ URL::to('pdf') }}" class="btn btn-primary">Generar PDF</a>
+				<?php	if ( Request::segment(3) && Request::segment(4) ):	?>
+					<a href="{{ URL::to('test') }}/{{ Request::segment(3) }}/{{ Request::segment(4) }}" class="btn btn-primary">Generar PDF</a>
+				<?php endif; ?>
 			</div>
 			<hr>
 
@@ -73,11 +75,14 @@
 			    		<?php
 			    		if ( count($array_values) > 0 )
 			    		{
-			    			$array = $array_values[$key];
+			    			if ( $array_values[$key] > 0 )
+			    			{
+			    				$array = $array_values[$key];
+			    			}
 			    		}
 					    ?>
 			    		<tr>
-				    		<td>{{ $alumno->nombre }}</td>
+				    		<td width="280">{{ $alumno->nombre }}</td>
 				    		@foreach ($asignaturas as $asignatura)
 				    			<?php
 				    			if ( isset($array) )
@@ -86,7 +91,7 @@
 					    		}
 				    			?>
 				    			<input type="hidden" name="id_asignatura[{{ $alumno->id }}][]" value="{{ $asignatura->id }}">
-				    			<td><input type="text" name="value[{{ $alumno->id }}][]" value="<?php echo isset($value) ? $value : "" ?>"></td>
+				    			<td><input class="input-value" type="text" name="value[{{ $alumno->id }}][]" value="<?php echo isset($value) ? $value : "" ?>"></td>
 				    		@endforeach
 				    	</tr>
 						@endforeach
