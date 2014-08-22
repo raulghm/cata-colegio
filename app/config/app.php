@@ -123,9 +123,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Themonkeys\Cachebuster\CachebusterServiceProvider',
-		'Barryvdh\DomPDF\ServiceProvider',
-		'CanGelis\L4pdf\ServiceProvider'
-
 	),
 
 	/*
