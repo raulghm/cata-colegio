@@ -9,7 +9,6 @@
 		"fzaninotto/faker": "*",
 		"themonkeys/cachebuster": "*",
 		"anahkiasen/underscore-php" : "dev-master",
-		"barryvdh/laravel-dompdf": "*",
 		"cangelis/l4pdf": "*"
 	},
 	"autoload": {
