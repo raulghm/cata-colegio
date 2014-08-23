@@ -125,7 +125,7 @@ Route::post('informe-logros/store', function()
 				$array_combinado[$id_asignatura[$j]] = $value[$j];
 			}
 
-			var_dump($array_combinado);
+			// var_dump($array_combinado);
 
 			// guardo valores id_asignatura + valor_asignatura
 			$array_combinado = serialize($array_combinado);
@@ -137,10 +137,9 @@ Route::post('informe-logros/store', function()
 
 			$query->save();
 		}
-
-		return Redirect::back();
-
 	}
+
+	return Redirect::back();
 });
 
 Route::post('test', function()
